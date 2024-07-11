@@ -1,6 +1,7 @@
 package client
 
 import (
+	"go.uber.org/zap"
 	"net/http"
 	"sync"
 )
@@ -11,6 +12,7 @@ type Jpush struct {
 	appMasterSecret string
 	baseURL         string
 	httpClient      *http.Client
+	logger          *zap.Logger
 }
 
 const defaultBaseUrl = ""
@@ -33,6 +35,11 @@ func NewClient(appKey, appMasterSecret string, options ...Option) *Jpush {
 		if jpush.httpClient == nil {
 			jpush.httpClient = http.DefaultClient
 		}
+
+		if jpush.logger == nil {
+			logger, _ := zap.NewProduction()
+			jpush.logger = logger
+		}
 	})
 	return jpush
 }
@@ -49,8 +56,8 @@ type withHttpClient struct {
 	client *http.Client
 }
 
-func (w withHttpClient) Apply(c *Jpush) {
-	c.httpClient = w.client
+func (w withHttpClient) Apply(j *Jpush) {
+	j.httpClient = w.client
 }
 
 func WithBaseUrl(url string) Option {
@@ -61,6 +68,18 @@ type withBaseUrl struct {
 	baseUrl string
 }
 
-func (w withBaseUrl) Apply(c *Jpush) {
-	c.baseURL = w.baseUrl
+func (w withBaseUrl) Apply(j *Jpush) {
+	j.baseURL = w.baseUrl
+}
+
+func WithZapLogger(logger *zap.Logger) Option {
+	return withLogger{logger: logger}
+}
+
+type withLogger struct {
+	logger *zap.Logger
+}
+
+func (w withLogger) Apply(j *Jpush) {
+	j.logger = w.logger
 }
