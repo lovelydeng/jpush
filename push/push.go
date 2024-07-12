@@ -3,7 +3,7 @@ package push
 import (
 	"context"
 	"fmt"
-	"github.com/lovelydeng/jpush/internal/core"
+	"github.com/lovelydeng/jpush/core"
 )
 
 type Client struct {
