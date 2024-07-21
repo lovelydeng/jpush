@@ -22,9 +22,9 @@ func NewWithDefaultCore(appKey, appMasterSecret string) *Client {
 	return &Client{Core: co}
 }
 
-func (c *Client) SimplePush(ctx context.Context, audience *Audience, notification *Notification) error {
+func (c *Client) SimplePush(ctx context.Context, platform Platform, audience any, notification *Notification) error {
 	entity := PushEntity{
-		Platform:     PlatformAll,
+		Platform:     string(platform),
 		Audience:     audience,
 		Notification: notification,
 	}

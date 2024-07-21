@@ -14,20 +14,16 @@ func TestMain(m *testing.M) {
 }
 
 func TestClient_SimplePush(t *testing.T) {
-	err := cli.SimplePush(context.Background(), &Audience{
-		Tag:            nil,
-		TagAnd:         nil,
-		TagNot:         nil,
-		Alias:          nil,
+	err := cli.SimplePush(context.Background(), PlatformAndroid, &Audience{
 		RegistrationId: []string{"18071adc0206ccfe21d"},
-		Segment:        nil,
-		Abtest:         nil,
-		LiveActivityID: "",
 	}, &Notification{
 		Alert: "报警通知111",
 		Android: Android{
-			Title:  "动检报警",
-			Intent: Intent{Url: "xvr://vistaflow.live/systemMessages"},
+			Alert:       "动检报警3333",
+			Title:       "动检报警",
+			Intent:      Intent{Url: "xvr://vistaflow.live/systemMessages"},
+			BadgeAddNum: 1,
+			BadgeClass:  "com.gscam.xvr.ui.main.MainActivity",
 		},
 	})
 	if err != nil {
