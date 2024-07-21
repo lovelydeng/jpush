@@ -20,6 +20,7 @@ func (c *Core) DoPostRequest(ctx context.Context, action string, data any) (*Res
 		c.Logger.Sugar().Errorf("json marshal error: %s", err)
 		return nil, err
 	}
+
 	reader := bytes.NewReader(b)
 	url := fmt.Sprintf("%s%s", c.baseURL, action)
 	req, err := http.NewRequest(http.MethodPost, url, reader)

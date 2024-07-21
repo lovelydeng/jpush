@@ -27,7 +27,7 @@ type Message struct {
 }
 
 type Audience struct {
-	Tag            []string `json:"tag"`
+	Tag            []string `json:"tag,omitempty"`
 	TagAnd         []string `json:"tag_and,omitempty"`
 	TagNot         []string `json:"tag_not,omitempty"`
 	Alias          []string `json:"alias,omitempty"`

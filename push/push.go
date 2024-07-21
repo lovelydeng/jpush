@@ -22,13 +22,11 @@ func NewWithDefaultCore(appKey, appMasterSecret string) *Client {
 	return &Client{Core: co}
 }
 
-func (c *Client) SimplePush(ctx context.Context, registrationIds []string, message *Message) error {
+func (c *Client) SimplePush(ctx context.Context, audience *Audience, notification *Notification) error {
 	entity := PushEntity{
-		Platform: PlatformAll,
-		Audience: Audience{
-			RegistrationId: registrationIds,
-		},
-		Message: message,
+		Platform:     PlatformAll,
+		Audience:     audience,
+		Notification: notification,
 	}
 
 	resp, err := c.Core.DoPostRequest(ctx, NormalPushAction, entity)
@@ -36,6 +34,9 @@ func (c *Client) SimplePush(ctx context.Context, registrationIds []string, messa
 		return err
 	}
 	_ = resp
-	fmt.Printf("httpStatus: %d body: %+v\n", resp.Status, string(resp.Body))
+
+	if resp.Status != 200 {
+		return fmt.Errorf("httpStatus: %d body: %+v\n", resp.Status, string(resp.Body))
+	}
 	return nil
 }
