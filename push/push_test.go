@@ -17,13 +17,11 @@ func TestClient_SimplePush(t *testing.T) {
 	err := cli.SimplePush(context.Background(), PlatformAndroid, &Audience{
 		RegistrationId: []string{"18071adc0206ccfe21d"},
 	}, &Notification{
-		Alert: "报警通知111",
+		Alert: "human detect alarm",
 		Android: Android{
-			Alert:       "动检报警3333",
-			Title:       "动检报警",
-			Intent:      Intent{Url: "xvr://vistaflow.live/systemMessages"},
-			BadgeAddNum: 1,
-			BadgeClass:  "com.gscam.xvr.ui.main.MainActivity",
+			Alert:  "human detect alarm",
+			Title:  "human detect alarm",
+			Intent: Intent{Url: "xvr://vistaflow.live/systemMessages"},
 		},
 	})
 	if err != nil {

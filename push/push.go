@@ -27,6 +27,10 @@ func (c *Client) SimplePush(ctx context.Context, platform Platform, audience any
 		Platform:     string(platform),
 		Audience:     audience,
 		Notification: notification,
+		Options: &Options{
+			ThirdPartyChannel: map[string]any{
+				"huawei": map[string]any{"category": "DEVICE_REMINDER"}},
+		},
 	}
 
 	resp, err := c.Core.DoPostRequest(ctx, NormalPushAction, entity)
@@ -38,5 +42,6 @@ func (c *Client) SimplePush(ctx context.Context, platform Platform, audience any
 	if resp.Status != 200 {
 		return fmt.Errorf("httpStatus: %d body: %+v\n", resp.Status, string(resp.Body))
 	}
+	fmt.Printf("%+v", string(resp.Body))
 	return nil
 }
