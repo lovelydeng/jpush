@@ -7,7 +7,8 @@ import (
 )
 
 type Client struct {
-	Core *core.Core
+	Core           *core.Core
+	ApnsProduction bool
 }
 
 var pushClient *Client
