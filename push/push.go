@@ -29,7 +29,9 @@ func (c *Client) SimplePush(ctx context.Context, platform Platform, audience any
 		Notification: notification,
 		Options: &Options{
 			ThirdPartyChannel: map[string]any{
-				"huawei": map[string]any{"category": "DEVICE_REMINDER"}},
+				"huawei": map[string]any{"category": "DEVICE_REMINDER"},
+			},
+			ApnsProduction: notification.ApnsProduction,
 		},
 	}
 

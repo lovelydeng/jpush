@@ -13,10 +13,11 @@ type PushEntity struct {
 }
 
 type Notification struct {
-	Alert   string  `json:"alert,omitempty"`
-	Android Android `json:"android"`
-	Ios     Ios     `json:"ios"`
-	Voip    any     `json:"voip,omitempty" comment:"ios透传"`
+	Alert          string  `json:"alert,omitempty"`
+	Android        Android `json:"android"`
+	Ios            Ios     `json:"ios"`
+	Voip           any     `json:"voip,omitempty" comment:"ios透传"`
+	ApnsProduction bool    `json:"-"`
 }
 
 type Message struct {
