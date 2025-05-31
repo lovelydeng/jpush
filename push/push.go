@@ -31,6 +31,11 @@ func (c *Client) SimplePush(ctx context.Context, platform Platform, audience any
 		Options: &Options{
 			ThirdPartyChannel: map[string]any{
 				"huawei": map[string]any{"category": "DEVICE_REMINDER"},
+				"oppo": map[string]any{
+					"distribution": "ospush",
+					"big_pic_path": notification.Android.BigPicPath,
+					"style":        3,
+				},
 			},
 			ApnsProduction: notification.ApnsProduction,
 		},
