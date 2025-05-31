@@ -34,7 +34,7 @@ func (c *Client) SimplePush(ctx context.Context, platform Platform, audience any
 				"oppo": map[string]any{
 					"distribution": "ospush",
 					"big_pic_path": notification.Android.BigPicPath,
-					"style":        3,
+					"style":        notification.Android.Style,
 				},
 			},
 			ApnsProduction: notification.ApnsProduction,
