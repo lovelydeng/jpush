@@ -15,7 +15,7 @@ func TestMain(m *testing.M) {
 
 func TestClient_SimplePush(t *testing.T) {
 	err := cli.SimplePush(context.Background(), PlatformAndroid, &Audience{
-		RegistrationId: []string{"18071adc0206ccfe21d"},
+		RegistrationId: []string{"18171adc023cdb8c2d9"},
 	}, &Notification{
 		Alert: "human detect alarm",
 		Android: Android{
@@ -23,6 +23,7 @@ func TestClient_SimplePush(t *testing.T) {
 			Title:  "human detect alarm",
 			Intent: Intent{Url: "xvr://vistaflow.live/systemMessages"},
 		},
+		ApnsProduction: false,
 	})
 	if err != nil {
 		panic(err)
